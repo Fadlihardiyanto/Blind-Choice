@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blind choice</title>
+  </head>
+  <body>
+    <h1>Ditaa Sayaang Pilih Kita Mau Makan Apa</h1>
+    <button class="choice" data-answer="1" data-picked="false">Pilihan 1</button>
+    <button class="choice" data-answer="2" data-picked="false">Pilihan 2</button>
+    <button class="choice" data-answer="3" data-picked="false">Pilihan 3</button>
+
+    <h2 id="answer1" class="answer" style="display: none">Mie Odos</h2>
+    <h2 id="answer2" class="answer" style="display: none">Mie Gacoan</h2>
+    <h2 id="answer3" class="answer" style="display: none">Mie Ayam</h2>
+
+    <script>
+      var choices = document.getElementsByClassName("choice");
+
+      for (var i = 0; i < choices.length; i++) {
+        choices[i].addEventListener("click", function () {
+          if (this.getAttribute("data-picked") === "false") {
+            this.setAttribute("data-picked", "true");
+            var answerId = "answer" + this.getAttribute("data-answer");
+            var answer = document.getElementById(answerId);
+            answer.style.display = "block";
+          }
+          for (var j = 0; j < choices.length; j++) {
+            if (choices[j] !== this) {
+              choices[j].setAttribute("disabled", "true");
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
